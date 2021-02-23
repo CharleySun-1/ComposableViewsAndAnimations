@@ -36,7 +36,7 @@ struct ImplicitAnimationsView: View {
                         Text("""
                             Implicit animations are as easy as it gets. We simply tell SwiftUI to animate any changes in state for a given view. And it is done – we don't have to do anything to specify how it happens, or consider what any of the "in-between" animation frames look like.
 
-                            In this example, a button changes size when it is pressed. Try it out. Then try uncommenting the .animation view modifier on line 41.
+                            In this example, a button changes size when it is pressed. Try it out. Then try uncommenting the .animation view modifier on line 47.
                             """)
                         
                         Button("Show Example 1") {

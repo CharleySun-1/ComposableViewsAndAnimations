@@ -14,15 +14,21 @@ struct ExerciseOneView: View {
     
     // Controls whether this view is showing or not
     @Binding var showThisView: Bool
-        
+    
     // Controls what typeface the text is shown in
     @State private var typeFace: String = "Helvetica-Neue"
-
+    
     // Whether to apply the animation
-    @State private var useAnimation = false
-
+    @State private var useAnimation = true
+    
+    // Controls the hue of the text
+    @State private var hue: Color = .red
+    
+    // Controls the size of the text
+    @State private var size: Double = 30.0
+    
     // MARK: Computed properties
-
+    
     // List all fonts available
     // NOTE: This is a very useful gist...
     //       https://gist.github.com/kristopherjohnson/c825cb97b1ad1fe0bc13d709986d0763
@@ -33,7 +39,7 @@ struct ExerciseOneView: View {
         }
         return names.sorted()
     }()
-
+    
     var body: some View {
         
         NavigationView {
@@ -41,7 +47,20 @@ struct ExerciseOneView: View {
             VStack {
                 
                 Text(typeFace)
-                    .font(.custom(typeFace, size: 30.0))
+                    .font(.custom(typeFace, size: CGFloat (size)))
+                    .border(Color.blue, width: 1.0)
+                    .onTapGesture {
+                        
+                        size = Double.random(in: 30...80) / 80.0;
+                        
+                        hue = Color(hue: Double.random(in: 1...360) / 360.0,
+                                   saturation: 0.8,
+                                   brightness: 0.8)
+                        
+                        }
+                    // When useAnimation is true, the default animation effect will be used.
+                    // When useAnimation is false, there will be no animation.
+                    .animation(.default)
                 
             }
             .navigationTitle("Exercise 1")
@@ -52,7 +71,7 @@ struct ExerciseOneView: View {
                     }
                 }
             }
-
+            
         }
         
     }
